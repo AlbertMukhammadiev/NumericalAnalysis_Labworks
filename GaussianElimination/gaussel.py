@@ -18,7 +18,7 @@ import numpy as np
 
 
 def solve_system(A, b, is_modified=False):
-    """solve system of linear equations A x = b and return x.
+    """Solve system of linear equations A x = b and return x.
 
     Arguments:
     A -- square matrix
@@ -98,7 +98,8 @@ def back_substitution(matrix):
     matrix -- two-dimensional matrix
     
     Attention: given argument must be a upper triangular matrix
-    and have n rows and n + 1 columns(last column is vector b)
+    with ones on main diagonal and have n rows and n + 1 columns
+    (last column is vector b)
     """
 
     n = matrix.shape[0]
