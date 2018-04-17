@@ -103,7 +103,7 @@ def back_substitution(matrix):
     """
 
     n = matrix.shape[0]
-    x = np.zeros(n)
+    x = np.zeros(n, complex)
     for i in range(n - 1, -1, -1):
         x[i] = matrix[i, n] - sum(matrix[i, :n] * x)
     
