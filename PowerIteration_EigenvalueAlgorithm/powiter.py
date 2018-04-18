@@ -16,7 +16,7 @@ def power_iteration_m(A, eps):
     This function applies a scalar product to accelerate convergence.
 
     Arguments:
-    A -- square matrix with diagonal predominance
+    A -- square matrix
     eps -- accuracy
     """
 
@@ -38,7 +38,7 @@ def power_iteration(A, eps):
     """Find the maximum modulo eigenvalue with a given accuracy.
     
     Arguments:
-    A -- square matrix with diagonal predominance
+    A -- square matrix
     eps -- accuracy
     """
     vector = random.rand(A.shape[0])
