@@ -1,8 +1,20 @@
+"""Tool for solving systems of linear equations
+using Cholesky decomposition
+
+Functions:
+    solve_system(A, b) -> ndarray
+    decomposition(matrix) -> ndarray
+    print_log() -> None
+"""
+
 import numpy as np
-import gaussel as ge
 import cmath
 
-_log = dict()
+from os.path import abspath as os_abspath, join as os_join
+lib_path = os_abspath(os_join(__file__, '..', '..', 'GaussianElimination'))
+from sys import path as sys_path
+sys_path.append(lib_path)
+import gaussel as ge
 
 
 def print_log():
@@ -11,6 +23,13 @@ def print_log():
 
 
 def solve_system(A, b):
+    """Solve system of linear equations A x = b and return x.
+
+    Arguments:
+    A -- symmetric matrix
+    b -- vector
+    """
+
     _log['symmetric matrix A'] = A.copy()
     _log['vector b'] = b.copy()
 
@@ -32,6 +51,13 @@ def solve_system(A, b):
 
 
 def decomposition(matrix):
+    """Apply Cholesky decomposition to the given matrix.
+    
+    Return upper triangular matrix.
+    Arguments:
+    matrix -- symmetric matrix
+    """
+
     n = matrix.shape[0]
     S = np.zeros((n, n), complex)
     for i in range(n):
@@ -41,3 +67,6 @@ def decomposition(matrix):
             S[i, j] = (matrix[i, j] - sum(S[:, i] * np.conj(S[:, j]))) / S[i, i]
 
     return S
+
+
+_log = dict()
