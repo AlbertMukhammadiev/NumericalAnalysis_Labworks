@@ -55,7 +55,7 @@ def forward_elimination_m(matrix):
 
     ctrl_vector = matrix.sum(axis = 1)
     log['control vector before forward elimination'] = ctrl_vector.copy()
-    n, m = matrix.shape[0], matrix.shape[1]
+    n = matrix.shape[0]
     for k in range(n):
         # search for the main elements(max by column) and rows swapping
         p = k + abs(matrix[k:,k]).argmax()
@@ -80,7 +80,7 @@ def forward_elimination(matrix):
 
     ctrl_vector = matrix.sum(axis = 1)
     log['control vector before forward elimination'] = ctrl_vector.copy()
-    n, m = matrix.shape[0], matrix.shape[1]
+    n = matrix.shape[0]
     for k in range(n):
         ctrl_vector[k] /= matrix[k][k]
         matrix[k] /= matrix[k][k]
@@ -107,7 +107,7 @@ def back_substitution(matrix):
     for i in range(n - 1, -1, -1):
         x[i] = matrix[i, n] - sum(matrix[i, :n] * x)
     
-    return x
+    return np.real_if_close(x)
 
 
 def print_log():
