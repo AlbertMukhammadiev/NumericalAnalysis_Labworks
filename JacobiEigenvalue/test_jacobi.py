@@ -7,7 +7,7 @@ from sys import path as sys_path
 sys_path.append(lib_path)
 
 from powiter import power_iteration_m
-from jacobi import *
+from jacobi import calculate_eigenvalues, calculate_eigenvalues_m
 
 class JacobiEigenvalueTestCase(TestCase):
     def setUp(self):
@@ -28,7 +28,13 @@ class JacobiEigenvalueTestCase(TestCase):
         ndigits = 5
         self.assertIn(eigenvalue.round(ndigits), eigenvalues.round(ndigits))
 
-    
+
+    def test_calculate_eigenvalues_m(self):
+        """Verify the found eigenvalues contains max modulo eigenvalue"""
+        eigenvalues = calculate_eigenvalues_m(self.A, self.eps)
+        eigenvalue, eigenvector = power_iteration_m(self.A, self.eps)
+        ndigits = 5
+        self.assertIn(eigenvalue.round(ndigits), eigenvalues.round(ndigits))
 
 if __name__ == '__main__':
     main()
